@@ -10,20 +10,14 @@ This is the new Raspberry PI scanning system.
 - Active Internet Connection (only to send Data)
 
 # Installation
-
-## Python Dependencies
-All missing dependencies can be installed with the `pip3-install.sh` script. 
-
-## Install chronos_scanner.service
-The Script `chronos_scanner.py` is configured as a Service and has to be installed as such.
-
+`sudo bash ./install.sh` installs missing Python libraries, installs chronos_scanner.service and creates the .env file.
 
 # After installation
 ## .env
-copy `example.env` and rename it to `.env` and modify it to your needs.
+modify `.env` to your needs.
 
 ## CronTab
-Following scripts require Cron:
-- chronos_sender.py
-- chronos_deleter.py 
+Following scripts require Sudo CronTab:
+- chronos_sender.py `* 5-19 * * 1-5 /usr/bin/python3 /home/pi/nfc/chronos_sender.py >> /var/log/chronos_sender.log 2>&1 | logger -t chronos`
+- chronos_deleter.py `0 18 * * 1-5 /usr/bin/python3 /home/pi/nfc/chronos_deleter.py >> /var/log/chronos_deleter.log 2>&1 | logger -t chronos`
 
