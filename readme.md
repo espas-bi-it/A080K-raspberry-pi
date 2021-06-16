@@ -11,7 +11,8 @@ This is the new Raspberry PI scanning system.
 - Active Internet Connection (only to send Data)
 
 # Installation
-`sudo bash ./install.sh` installs missing Python libraries, installs chronos_scanner.service and creates the .env file.
+1. clone repository into `nfc` folder
+2. `sudo bash ./install.sh` installs missing Python libraries, installs chronos_scanner.service and creates the .env file.
 
 ## Database
 Import the structure of `database.sql` into your preferred database.
