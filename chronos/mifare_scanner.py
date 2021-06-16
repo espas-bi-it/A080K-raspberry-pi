@@ -16,7 +16,6 @@ class MifareScanner:
         self.lastRfidTime = datetime.now()
         self.soundPlayer = SoundPlayer()
         self.mifare = nxppy.Mifare()
-        
 
     def scan_rfid(self):
         # retrieve rfid from chips
@@ -46,11 +45,11 @@ class MifareScanner:
             isrfidIn = self.db.get_time_entries_today_count(
                 rfid=rfid)
             if isrfidIn % 2 == 1:  # play sound
-                self.soundPlayer.play()
+                self.soundPlayer.play(os.environ.get("SOUND_IN_PATH"))
                 # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
                 pass
             else:
-                self.soundPlayer.play()
+                self.soundPlayer.play(os.environ.get("SOUND_OUT_PATH"))
                 # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
                 pass
             self.lastRfid = rfid  # save rfid + scan time
@@ -64,6 +63,17 @@ class MifareScanner:
             if self.lastRfidTime < (datetime.now() - timedelta(seconds=15)):
                 log.debug('duplicate scan - playing sound only')
                 # decoy ping
+
+                isrfidIn = self.db.get_time_entries_today_count(rfid=rfid)
+                if isrfidIn % 2 == 1:  # play sound
+                    self.soundPlayer.play(os.environ.get("SOUND_IN_PATH"))
+                    # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
+                    pass
+                else:
+                    self.soundPlayer.play(os.environ.get("SOUND_OUT_PATH"))
+                    # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
+                    pass
+
                 # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
                 log.debug("duplicate scan - sound but no new timeentry")
                 self.lastRfidTime = datetime.now()
