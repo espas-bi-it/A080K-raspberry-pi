@@ -8,4 +8,4 @@ systemctl daemon-reload
 systemctl enable chronos_scanner
 systemctl start chronos_scanner
 
-copy example.env .env
+cp example.env .env
