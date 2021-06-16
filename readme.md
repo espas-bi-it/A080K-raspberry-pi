@@ -4,17 +4,21 @@ Hello World
 This is the new Raspberry PI scanning system. 
 
 # Requirements 
-- Raspbian Buster
+- Raspbian Buster (2019)
 - NxpRdLib
+- EXPLORE-NFC Element14 
 - MySQL Database
 - Active Internet Connection (only to send Data)
 
 # Installation
 `sudo bash ./install.sh` installs missing Python libraries, installs chronos_scanner.service and creates the .env file.
 
+## Database
+Import the structure of `database.sql` into your preferred database.
+
 # After installation
 ## .env
-modify `.env` to your needs.
+modify `.env` to your needs and file locations.
 
 ## CronTab
 Following scripts require Sudo CronTab:
