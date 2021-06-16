@@ -16,7 +16,7 @@ class MifareScanner:
         self.lastRfidTime = datetime.now()
         self.soundPlayer = SoundPlayer()
         self.mifare = nxppy.Mifare()
-        pass
+        
 
     def scan_rfid(self):
         # retrieve rfid from chips
@@ -46,9 +46,11 @@ class MifareScanner:
             isrfidIn = self.db.get_time_entries_today_count(
                 rfid=rfid)
             if isrfidIn % 2 == 1:  # play sound
+                self.soundPlayer.play()
                 # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
                 pass
             else:
+                self.soundPlayer.play()
                 # self.playSound(badge=badge, sound='./src/sounds/rfidn.mp3')
                 pass
             self.lastRfid = rfid  # save rfid + scan time
