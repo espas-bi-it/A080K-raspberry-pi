@@ -2,15 +2,10 @@
 
 import os
 import time
-import logging as log
 import logging.config
 from dotenv import load_dotenv
 
-from chronos.mifare_scanner import MifareScanner
-
-import pygame as pg
-
-file_path = os.path.dirname(__file__)
+from mifare_scanner import MifareScanner
 
 load_dotenv()
 
@@ -25,4 +20,10 @@ log.debug("load env")
 scanner = MifareScanner()
 log.debug("initialized MifareScanner")
 
-scanner.process_rfid(rfid="python debug")
+while True:
+    rfid = scanner.scan_rfid()
+
+    if rfid:
+        # found rfid
+        scanner.process_rfid(rfid=rfid)
+        time.sleep(2)

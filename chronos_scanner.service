@@ -4,7 +4,7 @@ After=mysql.service
 
 [Service]
 User=pi
-ExecStart=/usr/bin/python3 /home/pi/nfc/chronos_scanner.py
+ExecStart=/usr/bin/python3 /home/pi/nfc/src/scanner.py
 
 [Install]
 WantedBy=multi-user.target
